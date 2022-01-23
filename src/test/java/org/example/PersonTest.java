@@ -34,11 +34,14 @@ assertEquals("darwin",st);
     }
 
 
+
     @Test
-    public void getSummary() {
-        String st= ob.getSummary();
-        assertEquals("{id:1name:darwinaltemail:se@er}",st);
+    public void ttoString() {
+        String st= ob.toString();
+        assertEquals("Person{Id=1, firstName='darwin', lastName='alt', email='se@er'}",st);
     }
+
+
 
     @Test
     public void setFirstName() {

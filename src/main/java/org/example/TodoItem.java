@@ -3,6 +3,7 @@ package org.example;
 import sun.util.resources.LocaleData;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class TodoItem {
 
@@ -76,9 +77,27 @@ public class TodoItem {
 
     }
 
-    public String getSummary() {
-        return  "{id:" + getId() + "title:"+getTitle()  +"task:"+ getTaskDescription() +  "deadline:"+ getDeadLine() +
-                  "done:"+ isDone() + "crator:"+ getCrator() +"}" ;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TodoItem)) return false;
+        TodoItem todoItem = (TodoItem) o;
+        return id == todoItem.id && done == todoItem.done && title.equals(todoItem.title) && taskDescription.equals(todoItem.taskDescription) && deadLine.equals(todoItem.deadLine);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, taskDescription, deadLine, done);
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", taskDescription='" + taskDescription + '\'' +
+                ", deadLine=" + deadLine +
+                ", done=" + done +
+                '}';
+    }
 }

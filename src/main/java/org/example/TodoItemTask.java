@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class TodoItemTask {
     private int id;
     private boolean assigned;
@@ -42,7 +44,26 @@ public class TodoItemTask {
     public void setAssignee(Person assignee) {
         this.assignee = assignee;
     }
-    public String getSummary() {
-        return  "{id:" + getId() + "isAssigned:"+isAssigned()  +"TodoItem:"+ getTodoItem() +  "Assignee:"+ getAssignee() + "}" ;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TodoItemTask)) return false;
+        TodoItemTask that = (TodoItemTask) o;
+        return id == that.id && assigned == that.assigned && todoItem.equals(that.todoItem);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, assigned, todoItem);
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItemTask{" +
+                "id=" + id +
+                ", assigned=" + assigned +
+                ", todoItem=" + todoItem +
+                '}';
     }
 }
